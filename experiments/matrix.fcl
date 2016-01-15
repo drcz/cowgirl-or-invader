@@ -1,0 +1,24 @@
+( (M1 M2)
+
+  init
+
+  [init0 (let Mh 0)
+         (let l M1)
+	 (goto Mh-test)]
+  [Mh-test (if (= l ()) Mh-end Mh-loop)]
+  [Mh-loop (let Mh (+ Mh 1))
+	   (let l (cdr l))]
+  [Mh-end (let Mw 0)
+          (let l (car M1))
+          (goto Mw-test)]
+  [Mw-test (if (= l ()) Mw-end Mw-loop)]
+  [Mw-loop (let Mw (+ Mw 1))
+           (let l (cdr l))]
+  [Mw-end (let Mres ())
+          (let i 0)
+          (let j 0)
+          (let sum 0)
+          (goto main-loop)]
+  [main-loop (if (= j Mw) end-row loop-row)]
+  [loop-row (let
+...

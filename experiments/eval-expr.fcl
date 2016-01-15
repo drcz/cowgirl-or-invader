@@ -1,0 +1,162 @@
+((expr store)
+ init
+
+ [init (let res ())
+       (let pend (cons expr ()))
+       (goto eval)]
+
+ [eval (if (= pend ()) end eval0)]
+
+ [eval0 (let cur (car pend))
+	(let pend (cdr pend))
+	(goto eval1)]
+
+ [eval1 (if (= cur ()) eval-trivial eval2)]
+
+ [eval2 (if (= cur T) eval-trivial eval3)]
+
+ [eval3 (if (number? cur) eval-trivial eval4)]
+
+ [eval4 (if (atom? cur) eval-sym eval5)]
+
+ [eval5 (if (= (cdr cur) ()) eval-app eval6)]
+
+ [eval6 (if (= (car cur) 'quote) eval-quote eval7)]
+
+ [eval7 (let rator (car cur))
+	(let rands (cdr cur))
+	(let pend (cons (cons rator ()) pend))
+	(goto push-rands)]
+
+ [push-rands (if (= rands ()) eval push-rands0)]
+
+ [push-rands0 (let rand (car rands))
+	      (let rands (cdr rands))
+	      (let pend (cons rand pend))
+	      (goto push-rands)]
+
+ [eval-trivial (let res (cons cur res))
+	       (goto eval)]
+
+ [eval-sym (let str store)
+	   (let sym cur)
+	   (goto search-store)]
+
+ [search-store (if (= str ()) error check-store)]
+
+ [check-store (if (= (car (car str)) sym) store-found check-next)]
+
+ [check-next (let str (cdr str))
+	     (goto search-store)]
+
+ [store-found (let val (cdr (car str)))
+	      (let res (cons val res))
+	      (goto eval)]
+
+
+ [eval-quote (let val (car (cdr cur)))
+	     (let res (cons val res))
+	     (goto eval)]
+
+ 
+ [eval-app (let op (car cur))
+	   (goto eval-app0)]
+
+ [eval-app0 (if (= op '+) eval-sum eval-app1)]
+
+ [eval-app1 (if (= op '-) eval-sub eval-app2)]
+
+ [eval-app2 (if (= op '*) eval-mul eval-app3)]
+
+ [eval-app3 (if (= op '/) eval-div eval-app4)]
+
+ [eval-app4 (if (= op '%) eval-mod eval-app5)]
+
+ [eval-app5 (if (= op '=) eval-eq eval-app6)]
+
+ [eval-app6 (if (= op '<) eval-lt eval-app7)]
+
+ [eval-app7 (if (= op 'cons) eval-cons eval-app8)]
+
+ [eval-app8 (if (= op 'car) eval-car eval-app9)]
+
+ [eval-app9 (if (= op 'cdr) eval-cdr eval-app10)]
+
+ [eval-app10 (if (= op 'number?) eval-num eval-app11)]
+
+ [eval-app11 (if (= op 'atom?) eval-atom eval-const)]
+
+ [eval-const (let res (cons op res))
+	     (goto eval)]
+ 
+ [eval-sum (let a (car res))
+	   (let b (car (cdr res)))
+	   (let res (cdr (cdr res)))
+	   (let res (cons (+ a b) res))
+	   (goto eval)]
+	     
+ [eval-sub (let a (car res))
+	   (let b (car (cdr res)))
+	   (let res (cdr (cdr res)))
+	   (let res (cons (- a b) res))
+	   (goto eval)]
+
+ [eval-mul (let a (car res))
+	   (let b (car (cdr res)))
+	   (let res (cdr (cdr res)))
+	   (let res (cons (* a b) res))
+	   (goto eval)]
+
+ [eval-div (let a (car res))
+	   (let b (car (cdr res)))
+	   (let res (cdr (cdr res)))
+	   (let res (cons (/ a b) res))
+	   (goto eval)]
+	     
+ [eval-mod (let a (car res))
+	   (let b (car (cdr res)))
+	   (let res (cdr (cdr res)))
+	   (let res (cons (% a b) res))
+	   (goto eval)]
+
+ [eval-eq (let a (car res))
+	  (let b (car (cdr res)))
+	  (let res (cdr (cdr res)))
+	  (let res (cons (% a b) res))
+	  (goto eval)]
+
+ [eval-lt (let a (car res))
+	  (let b (car (cdr res)))
+	  (let res (cdr (cdr res)))
+	  (let res (cons (< a b) res))
+	  (goto eval)]
+
+ [eval-cons (let a (car res))
+	    (let b (car (cdr res)))
+	    (let res (cdr (cdr res)))
+	    (let res (cons (cons a b) res))
+	    (goto eval)]
+
+ [eval-car (let a (car res))
+	   (let res (cdr res))
+	   (let res (cons (car a) res))
+	   (goto eval)]
+
+ [eval-cdr (let a (car res))
+	   (let res (cdr res))
+	   (let res (cons (cdr a) res))
+	   (goto eval)]
+
+ [eval-num (let a (car res))
+	   (let res (cdr res))
+	   (let res (cons (number? a) res))
+	   (goto eval)]
+
+ [eval-atom (let a (car res))
+	    (let res (cdr res))
+	    (let res (cons (atom? a) res))
+	    (goto eval)]
+
+ [error (return 'ERROR)]
+
+ [end (return (car res))])

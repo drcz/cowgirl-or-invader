@@ -1,0 +1,19 @@
+( (xs ys)
+
+  init
+  [init (let res ys)
+	(let tmp '())
+	(goto test)]
+  [test (if (= xs ()) build loop)]
+  [loop (let tmp (cons (car xs) tmp))
+	(let xs (cdr xs))
+	(goto test)]
+  [build (if (= tmp ()) end loop2)]
+  [loop2 (let res (cons (car tmp) res))
+	 (let tmp (cdr tmp))
+	 (goto build)]
+  [end (return res)]
+)
+
+
+; apd xs ys = [ xs=() -> ys, xs=x:xs' -> x:apd xs' ys ]

@@ -1,0 +1,36 @@
+((x0)
+ init14
+ (init14 (if (= x0 ()) negative15 loop316))
+ (negative15 (return 'MISMATCH))
+ (loop316 (if (= (car x0) 'a) loop417 next128))
+ (loop417 (if (= (cdr x0) ()) negative18 loop319))
+ (negative18 (return 'MISMATCH))
+ (loop319
+   (if (= (car (cdr x0)) 'a) loop420 next126))
+ (loop420
+   (if (= (cdr (cdr x0)) ()) negative21 loop322))
+ (negative21 (return 'MISMATCH))
+ (loop322
+   (if (= (car (cdr (cdr x0))) 'b) loop423 next124))
+ (loop423 (return 'MATCH))
+ (next124 (if (= x0 ()) negative21 next225))
+ (next225
+   (let t0 (cdr x0))
+   (let t0 (cdr x0))
+   (let x0 t0)
+   (let x0 t0)
+   (if (= x0 ()) negative15 loop316))
+ (next126 (if (= x0 ()) negative18 next227))
+ (next227
+   (let t0 (cdr x0))
+   (let t0 (cdr x0))
+   (let x0 t0)
+   (let x0 t0)
+   (if (= x0 ()) negative15 loop316))
+ (next128 (if (= x0 ()) negative15 next229))
+ (next229
+   (let t0 (cdr x0))
+   (let t0 (cdr x0))
+   (let x0 t0)
+   (let x0 t0)
+   (if (= x0 ()) negative15 loop316)))

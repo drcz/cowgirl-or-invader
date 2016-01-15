@@ -1,0 +1,11 @@
+( (xs)
+
+  init
+
+  [init (let len 0)
+        (goto test)]
+  [test (if (= xs ()) end loop)]
+  [loop (let len (+ len 1))
+        (let xs (cdr xs))
+	(goto test)]
+  [end (return len)] )

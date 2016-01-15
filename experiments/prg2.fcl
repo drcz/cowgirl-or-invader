@@ -1,0 +1,313 @@
+((x0)
+ main
+ (main #;(let read-k (cons 'L0 ()))
+       (let cons-k (cons 'L1 ()))
+       (let car-k (cons 'L2 ()))
+       (let cdr-k (cons 'L3 ()))
+       (let +-k (cons 'L4 ()))
+       (let --k (cons 'L5 ()))
+       (let *-k (cons 'L6 ()))
+       (let atom?-k (cons 'L7 ()))
+       (let number?-k (cons 'L8 ()))
+       (let =-k (cons 'L9 ()))
+       (let <-k (cons 'L10 ()))
+       (let apd (cons 'L11 ()))
+       (let main (cons 'L22 ()))
+       (let label main)
+       (let args (cons x0 (cons (cons 'L26 ()) ())))
+       (goto dispatch-0))
+ (dispatch-0 (let new-label '())
+	     (let new-args '())
+	     (goto dispatch-1))
+  ;   (if (= (car label) 'L0) block-L0 dispatch-1))
+ (dispatch-1
+   (if (= (car label) 'L1) block-L1 dispatch-2))
+ (dispatch-2
+   (if (= (car label) 'L2) block-L2 dispatch-3))
+ (dispatch-3
+   (if (= (car label) 'L3) block-L3 dispatch-4))
+ (dispatch-4
+   (if (= (car label) 'L4) block-L4 dispatch-5))
+ (dispatch-5
+   (if (= (car label) 'L5) block-L5 dispatch-6))
+ (dispatch-6
+   (if (= (car label) 'L6) block-L6 dispatch-7))
+ (dispatch-7
+   (if (= (car label) 'L7) block-L7 dispatch-8))
+ (dispatch-8
+   (if (= (car label) 'L8) block-L8 dispatch-9))
+ (dispatch-9
+   (if (= (car label) 'L9) block-L9 dispatch-10))
+ (dispatch-10
+   (if (= (car label) 'L10) block-L10 dispatch-11))
+ (dispatch-11
+   (if (= (car label) 'L11) block-L11 dispatch-12))
+ (dispatch-12
+   (if (= (car label) 'L12) block-L12 dispatch-13))
+ (dispatch-13
+   (if (= (car label) 'L13) block-L13 dispatch-14))
+ (dispatch-14
+   (if (= (car label) 'L14) block-L14 dispatch-15))
+ (dispatch-15
+   (if (= (car label) 'L15) block-L15 dispatch-16))
+ (dispatch-16
+   (if (= (car label) 'L16) block-L16 dispatch-17))
+ (dispatch-17
+   (if (= (car label) 'L17) block-L17 dispatch-18))
+ (dispatch-18
+   (if (= (car label) 'L18) block-L18 dispatch-19))
+ (dispatch-19
+   (if (= (car label) 'L19) block-L19 dispatch-20))
+ (dispatch-20
+   (if (= (car label) 'L20) block-L20 dispatch-21))
+ (dispatch-21
+   (if (= (car label) 'L21) block-L21 dispatch-22))
+ (dispatch-22
+   (if (= (car label) 'L22) block-L22 dispatch-23))
+ (dispatch-23
+   (if (= (car label) 'L23) block-L23 dispatch-24))
+ (dispatch-24
+   (if (= (car label) 'L24) block-L24 dispatch-25))
+ (dispatch-25
+   (if (= (car label) 'L25) block-L25 dispatch-26))
+ (dispatch-26 (goto block-L26))
+ #;(block-L0
+   (let new-label (car args))
+   (let new-args (cons (read) ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-L1
+   (let new-label (car (cdr (cdr args))))
+   (let new-args (cons (cons (car args) (car (cdr args))) ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-L2
+   (let new-label (car (cdr args)))
+   (let new-args (cons (car (car args)) ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-L3
+   (let new-label (car (cdr args)))
+   (let new-args (cons (cdr (car args)) ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-L4
+   (let new-label (car (cdr (cdr args))))
+   (let new-args (cons (+ (car args) (car (cdr args))) ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-L5
+   (let new-label (car (cdr (cdr args))))
+   (let new-args (cons (- (car args) (car (cdr args))) ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-L6
+   (let new-label (car (cdr (cdr args))))
+   (let new-args (cons (* (car args) (car (cdr args))) ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-L7
+   (let new-label (car (cdr args)))
+   (let new-args (cons (atom? e) ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-L8
+   (let new-label (car (cdr args)))
+   (let new-args (cons (number? e) ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-L9
+   (let new-label (car (cdr (cdr args))))
+   (let new-args (cons (= (car args) (car (cdr args))) ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-L10
+   (let new-label (car (cdr (cdr args))))
+   (let new-args (cons (< (car args) (car (cdr args))) ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-L11
+   (let new-label (cons
+                   'L12
+                   (cons (car (cdr (cdr args)))
+                         (cons (car (cdr args)) (cons (car args) ())))))
+   (let new-args (cons (car args) ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-L12
+   (let new-label (cons
+                   'L13
+                   (cons (car args)
+                         (cons (car (cdr label))
+                               (cons (car (cdr (cdr label)))
+                                     (cons (car (cdr (cdr (cdr label))))
+                                           ()))))))
+   (let new-args (cons () ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-L13
+   (let new-label =-k)
+   (let new-args (cons
+                  (car (cdr label))
+                  (cons (car args)
+                        (cons (cons 'L14
+                                    (cons (car (cdr (cdr label)))
+                                          (cons (car (cdr (cdr (cdr label))))
+                                                (cons (car (cdr (cdr (cdr (cdr label)))))
+                                                      ()))))
+                              ()))))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-L14
+   (if (car args) block-L14-2404 block-L14-2405))
+ (block-L14-2404
+   (let new-label (car (cdr label)))
+   (let new-args (cons (car (cdr (cdr label))) ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-L14-2405
+   (let new-label (cons
+                   'L15
+                   (cons (car (cdr label))
+                         (cons (car (cdr (cdr label)))
+                               (cons (car (cdr (cdr (cdr label)))) ())))))
+   (let new-args (cons (car (cdr (cdr (cdr label)))) ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-L15
+   (let new-label car-k)
+   (let new-args (cons
+                  (car args)
+                  (cons (cons 'L16
+                              (cons (car (cdr label))
+                                    (cons (car (cdr (cdr label)))
+                                          (cons (car (cdr (cdr (cdr label))))
+                                                ()))))
+                        ())))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-L16
+   (let new-label (cons
+                   'L17
+                   (cons (car args)
+                         (cons (car (cdr label))
+                               (cons (car (cdr (cdr label)))
+                                     (cons (car (cdr (cdr (cdr label))))
+                                           ()))))))
+   (let new-args (cons apd ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-L17
+   (let new-label (cons
+                   'L18
+                   (cons (car args)
+                         (cons (car (cdr label))
+                               (cons (car (cdr (cdr label)))
+                                     (cons (car (cdr (cdr (cdr label))))
+                                           ()))))))
+   (let new-args (cons (car (cdr (cdr (cdr (cdr label))))) ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-L18
+   (let new-label cdr-k)
+   (let new-args (cons
+                  (car args)
+                  (cons (cons 'L19
+                              (cons (car (cdr label))
+                                    (cons (car (cdr (cdr label)))
+                                          (cons (car (cdr (cdr (cdr label))))
+                                                (cons (car (cdr (cdr (cdr (cdr label)))))
+                                                      ())))))
+                        ())))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-L19
+   (let new-label (cons
+                   'L20
+                   (cons (car (cdr label))
+                         (cons (car args)
+                               (cons (car (cdr (cdr label)))
+                                     (cons (car (cdr (cdr (cdr label))))
+                                           ()))))))
+   (let new-args (cons (car (cdr (cdr (cdr (cdr label))))) ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-L20
+   (let new-label (car (cdr label)))
+   (let new-args (cons
+                  (car (cdr (cdr label)))
+                  (cons (car args)
+                        (cons (cons 'L21
+                                    (cons (car (cdr (cdr (cdr label))))
+                                          (cons (car (cdr (cdr (cdr (cdr label)))))
+                                                ())))
+                              ()))))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-L21
+   (let new-label cons-k)
+   (let new-args (cons
+                  (car (cdr label))
+                  (cons (car args)
+                        (cons (car (cdr (cdr label))) ()))))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-L22
+   (let new-label (cons
+                   'L23
+                   (cons (car (cdr args)) (cons (car args) ()))))
+   (let new-args (cons apd ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-L23
+   (let new-label (cons
+                   'L24
+                   (cons (car args) (cons (car (cdr label)) ()))))
+   (let new-args (cons (car (cdr (cdr label))) ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-L24
+   (let new-label (cons
+                   'L25
+                   (cons (car (cdr label))
+                         (cons (car args)
+                               (cons (car (cdr (cdr label))) ())))))
+   (let new-args (cons '(e l o) ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-L25
+   (let new-label (car (cdr label)))
+   (let new-args (cons
+                  (car (cdr (cdr label)))
+                  (cons (car args)
+                        (cons (car (cdr (cdr (cdr label)))) ()))))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-L26 (return (car args))))

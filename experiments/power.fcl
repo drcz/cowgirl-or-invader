@@ -1,0 +1,15 @@
+( (n m)
+
+  main
+
+  [main (let r 1)
+	(goto test)]
+
+  [test (if (= n 0) end loop)]
+
+  [loop (let r (* r m))
+	(let n (- n 1))
+	(goto test)]
+
+  [end (return r)] )
+

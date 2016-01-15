@@ -1,0 +1,14 @@
+((k al)
+    main
+
+   (main (let pend al)
+	 (goto test))
+   (test (if (= pend ()) fail check))
+
+   (check (if (= (car (car pend)) k) found next))
+
+   (next (let pend (cdr pend))
+	 (goto test))
+
+   (found (return (cdr (car pend))))
+   (fail (return 'UNDEFINED)))

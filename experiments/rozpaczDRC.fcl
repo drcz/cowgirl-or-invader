@@ -1,0 +1,204 @@
+((program inputs)
+ init
+
+ (init (let D ())
+       (let R inputs)
+       (let C (cons program ()))
+       (goto step))
+       
+ (step (let cmd ()) ;;; for now, as I don't have LVA rewritten and... yeah.
+       (let exp ())
+       (let var ())
+       (let val ())
+       (let store ())
+       (let tmp ())
+       (let perm ())
+       (let concl ())
+       (let alt ())
+       (let proc ())
+       (let arg1 ())
+       (let arg2 ())
+       (let res ())
+       
+       (if (= C ()) end step1))
+
+ (end (return (car R)))
+
+ (step1 (if (= (car C) ()) step2 step3))
+ 
+ (step2 (let C (cdr C))
+        (goto step))
+
+ (step3 (let cmd (car (car C)))
+        (let C (cons (cdr (car C)) (cdr C)))
+        (goto check-const))
+
+ (check-const   (if (= cmd 'CONST) do-const check-proc))
+ (check-proc    (if (= cmd 'PROC) do-const check-lookup))
+ (check-lookup  (if (= cmd 'LOOKUP) do-lookup check-name))
+ (check-name    (if (= cmd 'NAME) do-name check-forget))
+ (check-forget  (if (= cmd 'FORGET) do-forget check-select))
+ (check-select  (if (= cmd 'SELECT) do-select check-apply))
+ (check-apply   (if (= cmd 'APPLY) do-apply check-cons))
+ 
+ (check-cons (if (= cmd 'CONS) do-cons check-car))
+ (check-car  (if (= cmd 'CAR) do-car check-cdr))
+ (check-cdr  (if (= cmd 'CDR) do-cdr check-eq))
+ (check-eq   (if (= cmd 'EQ) do-eq check-num))
+ (check-num  (if (= cmd 'NUM) do-num check-atom))
+ (check-atom (if (= cmd 'ATOM) do-atom check-add))
+ (check-add  (if (= cmd 'ADD) do-add check-sub))
+ (check-sub  (if (= cmd 'SUB) do-sub check-mul))
+ (check-mul  (if (= cmd 'MUL) do-mul check-div))
+ (check-div  (if (= cmd 'DIV) do-div check-mod))
+ (check-mod  (if (= cmd 'MOD) do-mod check-lt))
+ (check-lt   (if (= cmd 'LT) do-lt err))
+
+ (err (return (cons 'ERROR-UNKNOWN-COMMAND cmd)))
+
+ (do-const (let exp (car (car C)))
+           (let C (cons (cdr (car C)) (cdr C)))
+           (let R (cons exp R))
+           (goto step))
+           
+ (do-lookup (let var (car (car C)))
+            (let C (cons (cdr (car C)) (cdr C)))
+            (let store D)
+            (goto search-store))
+            
+ [search-store (if (= store ()) error check-store)]
+ 
+ [check-store (if (= (car (car store)) var) store-found check-next)]
+ 
+ [check-next (let store (cdr store))
+	         (goto search-store)]
+	         
+ [store-found (let val (cdr (car store)))
+	          (let R (cons val R))
+	          (goto step)]
+
+ (do-name (let var (car (car C)))
+          (let val (car R))
+          (let C (cons (cdr (car C)) (cdr C)))
+          (let R (cdr R))
+          (let D (cons (cons var val) D)) ;; !!
+          (goto step))
+
+ (do-forget (let var (car (car C)))
+            (let C (cons (cdr (car C)) (cdr C)))
+            (let tmp ()) ;;; omg...
+	        (goto forget-test))
+	        
+ [forget-test (if (= var (car (car D))) forget-phase2 forget-loop)]
+ 
+ [forget-loop (let tmp (cons (car D) tmp))
+              (let D (cdr D))
+              (goto forget-test)]
+              
+ [forget-phase2 (let D (cdr D))
+                (goto forget-test2)]
+ [forget-test2 (if (= tmp ()) step forget-loop2)]
+ 
+ [forget-loop2 (let D (cons (car tmp) D))
+               (let tmp (cdr tmp))
+               (goto forget-test2)]
+ 
+ 
+ (do-select (let perm (car R))
+            (let R (cdr R))
+            (let concl (car (car C)))
+            (let alt (car (cdr (car C))))
+            (let C (cons (cdr (cdr (car C))) (cdr C)))
+            (if perm do-concl do-alt))
+
+ (do-concl (let C (cons concl C))
+           (goto step))
+
+ (do-alt (let C (cons alt C))
+         (goto step))
+
+ (do-apply (let proc (car R))
+           (let R (cdr R))
+	   (let C (cons proc C))
+           (goto step))
+
+ (do-cons (let arg1 (car R))
+          (let arg2 (car (cdr R)))
+          (let R (cdr (cdr R)))
+          (let res (cons arg1 arg2))
+          (let R (cons res R))
+          (goto step))
+
+ (do-car (let arg1 (car R))
+         (let R (cdr R))
+         (let res (car arg1))
+         (let R (cons res R))
+         (goto step))
+
+ (do-cdr (let arg1 (car R))
+         (let R (cdr R))
+         (let res (cdr arg1))
+         (let R (cons res R))
+         (goto step))
+
+ (do-eq (let arg1 (car R))
+        (let arg2 (car (cdr R)))
+        (let R (cdr (cdr R)))
+        (let res (= arg1 arg2))
+        (let R (cons res R))
+        (goto step))
+
+ (do-num (let arg1 (car R))
+         (let R (cdr R))
+         (let res (number? arg1))
+         (let R (cons res R))
+         (goto step))
+
+ (do-atom (let arg1 (car R))
+          (let R (cdr R))
+          (let res (atom? arg1))
+          (let R (cons res R))
+          (goto step))
+
+ (do-add (let arg1 (car R))
+         (let arg2 (car (cdr R)))
+         (let R (cdr (cdr R)))
+         (let res (+ arg1 arg2))
+         (let R (cons res R))
+         (goto step))
+
+ (do-sub (let arg1 (car R))
+         (let arg2 (car (cdr R)))
+         (let R (cdr (cdr R)))
+         (let res (- arg1 arg2))
+         (let R (cons res R))
+         (goto step))
+
+ (do-mul (let arg1 (car R))
+         (let arg2 (car (cdr R)))
+         (let R (cdr (cdr R)))
+         (let res (* arg1 arg2))
+         (let R (cons res R))
+         (goto step))
+
+ (do-div (let arg1 (car R))
+         (let arg2 (car (cdr R)))
+         (let R (cdr (cdr R)))
+         (let res (/ arg1 arg2))
+         (let R (cons res R))
+         (goto step))
+
+ (do-mod (let arg1 (car R))
+         (let arg2 (car (cdr R)))
+         (let R (cdr (cdr R)))
+         (let res (% arg1 arg2))
+         (let R (cons res R))
+         (goto step))
+
+ (do-lt (let arg1 (car R))
+        (let arg2 (car (cdr R)))
+        (let R (cdr (cdr R)))
+        (let res (< arg1 arg2))
+        (let R (cons res R))
+        (goto step))
+)

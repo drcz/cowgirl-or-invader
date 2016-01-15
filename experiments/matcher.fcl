@@ -1,0 +1,28 @@
+( (p s)
+
+  init
+
+  [init (let op p)
+	(let os s)
+	(goto loop1)]
+
+  [loop1 (if (= p ()) positive loop2)]
+
+  [loop2 (if (= s ()) negative loop3)]
+
+  [loop3 (if (= (car s) (car p)) loop4 next1)]
+
+  [loop4 (let p (cdr p))
+	 (let s (cdr s))
+	 (goto loop1)]
+
+  [next1 (if (= os ()) negative next2)]
+
+  [next2 (let p op)
+	 (let s (cdr os))
+	 (let os (cdr os))
+	 (goto loop1)]
+
+  [positive (return 'MATCH)]
+
+  [negative (return 'MISMATCH)] )

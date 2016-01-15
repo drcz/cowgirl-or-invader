@@ -1,0 +1,252 @@
+;; (map (^ (x) (* x x)) (cons n '(1 2 3 4 5))) "compiled" with cps-proto + d17n...
+
+((n)
+ main
+
+ (block-18 (return (car args)))
+ (block-17
+   (let new-label (car (cdr args)))
+   (let new-args
+        (cons (* (car args) (car args)) ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-16
+   (let new-label cons-k)
+   (let new-args
+        (cons (car (cdr label))
+              (cons (car args)
+                    (cons (car (cdr (cdr label))) ()))))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-15
+   (let new-label (car (cdr label)))
+   (let new-args
+        (cons (car (cdr (cdr label)))
+              (cons (car args)
+                    (cons (cons 'l16
+                                (cons (car (cdr (cdr (cdr label))))
+                                      (cons (car (cdr (cdr (cdr (cdr label)))))
+                                            ())))
+                          ()))))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-14
+   (let new-label cdr-k)
+   (let new-args
+        (cons (car args)
+              (cons (cons 'l15
+                          (cons (car (cdr label))
+                                (cons (car (cdr (cdr label)))
+                                      (cons (car (cdr (cdr (cdr label))))
+                                            (cons (car (cdr (cdr (cdr (cdr label)))))
+                                                  ())))))
+                    ())))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-13
+   (let new-label
+        (cons 'l14
+              (cons (car (cdr label))
+                    (cons (car args)
+                          (cons (car (cdr (cdr label)))
+                                (cons (car (cdr (cdr (cdr label)))) ()))))))
+   (let new-args
+        (cons (car (cdr (cdr (cdr (cdr label))))) ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-12
+   (let new-label
+        (cons 'l13
+              (cons (car args)
+                    (cons (car (cdr label))
+                          (cons (car (cdr (cdr label)))
+                                (cons (car (cdr (cdr (cdr label)))) ()))))))
+   (let new-args
+        (cons (car (cdr (cdr (cdr (cdr label))))) ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-11
+   (let new-label
+        (cons 'l12
+              (cons (car args)
+                    (cons (car (cdr label))
+                          (cons (car (cdr (cdr label)))
+                                (cons (car (cdr (cdr (cdr label)))) ()))))))
+   (let new-args (cons map ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-10
+   (let new-label (car (cdr label)))
+   (let new-args
+        (cons (car args)
+              (cons (cons 'l11
+                          (cons (car (cdr (cdr label)))
+                                (cons (car (cdr (cdr (cdr label))))
+                                      (cons (car (cdr (cdr (cdr (cdr label)))))
+                                            ()))))
+                    ())))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-9
+   (let new-label car-k)
+   (let new-args
+        (cons (car args)
+              (cons (cons 'l10
+                          (cons (car (cdr label))
+                                (cons (car (cdr (cdr label)))
+                                      (cons (car (cdr (cdr (cdr label))))
+                                            (cons (car (cdr (cdr (cdr (cdr label)))))
+                                                  ())))))
+                    ())))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-8
+   (let new-label
+        (cons 'l9
+              (cons (car args)
+                    (cons (car (cdr label))
+                          (cons (car (cdr (cdr label)))
+                                (cons (car (cdr (cdr (cdr label)))) ()))))))
+   (let new-args (cons (car (cdr (cdr label))) ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-7-16
+   (let new-label
+        (cons 'l8
+              (cons (car (cdr label))
+                    (cons (car (cdr (cdr label)))
+                          (cons (car (cdr (cdr (cdr label)))) ())))))
+   (let new-args
+        (cons (car (cdr (cdr (cdr label)))) ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-7-15
+   (let new-label (car (cdr label)))
+   (let new-args (cons () ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-7 (if (car args) block-7-15 block-7-16))
+ (block-6
+   (let new-label eq-k)
+   (let new-args
+        (cons (car (cdr label))
+              (cons (car args)
+                    (cons (cons 'l7
+                                (cons (car (cdr (cdr label)))
+                                      (cons (car (cdr (cdr (cdr label))))
+                                            (cons (car (cdr (cdr (cdr (cdr label)))))
+                                                  ()))))
+                          ()))))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-5
+   (let new-label
+        (cons 'l6
+              (cons (car args)
+                    (cons (car (cdr label))
+                          (cons (car (cdr (cdr label)))
+                                (cons (car (cdr (cdr (cdr label)))) ()))))))
+   (let new-args (cons () ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-4
+   (let new-label
+        (cons 'l5
+              (cons (car (cdr (cdr args)))
+                    (cons (car (cdr args)) (cons (car args) ())))))
+   (let new-args (cons (car (cdr args)) ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-3
+   (let new-label (car (cdr (cdr args))))
+   (let new-args
+        (cons (cons (car args) (car (cdr args))) ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-2
+   (let new-label (car (cdr args)))
+   (let new-args (cons (cdr (car args)) ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-1
+   (let new-label (car (cdr args)))
+   (let new-args (cons (car (car args)) ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (block-0
+   (let new-label (car (cdr (cdr args))))
+   (let new-args
+        (cons (= (car args) (car (cdr args))) ()))
+   (let args new-args)
+   (let label new-label)
+   (goto dispatch-0))
+ (dispatch-0
+   (if (= (car label) 'l0) block-0 dispatch-1))
+ (dispatch-1
+   (if (= (car label) 'l1) block-1 dispatch-2))
+ (dispatch-2
+   (if (= (car label) 'l2) block-2 dispatch-3))
+ (dispatch-3
+   (if (= (car label) 'l3) block-3 dispatch-4))
+ (dispatch-4
+   (if (= (car label) 'l4) block-4 dispatch-5))
+ (dispatch-5
+   (if (= (car label) 'l5) block-5 dispatch-6))
+ (dispatch-6
+   (if (= (car label) 'l6) block-6 dispatch-7))
+ (dispatch-7
+   (if (= (car label) 'l7) block-7 dispatch-8))
+ (dispatch-8
+   (if (= (car label) 'l8) block-8 dispatch-9))
+ (dispatch-9
+   (if (= (car label) 'l9) block-9 dispatch-10))
+ (dispatch-10
+   (if (= (car label) 'l10) block-10 dispatch-11))
+ (dispatch-11
+   (if (= (car label) 'l11) block-11 dispatch-12))
+ (dispatch-12
+   (if (= (car label) 'l12) block-12 dispatch-13))
+ (dispatch-13
+   (if (= (car label) 'l13) block-13 dispatch-14))
+ (dispatch-14
+   (if (= (car label) 'l14) block-14 dispatch-15))
+ (dispatch-15
+   (if (= (car label) 'l15) block-15 dispatch-16))
+ (dispatch-16
+   (if (= (car label) 'l16) block-16 dispatch-17))
+ (dispatch-17
+   (if (= (car label) 'l17) block-17 dispatch-18))
+ (dispatch-18 (goto block-18))
+
+(main
+ (let eq-k (cons 'l0 ()))
+ (let car-k (cons 'l1 ()))
+ (let cdr-k (cons 'l2 ()))
+ (let cons-k (cons 'l3 ()))
+ (let map (cons 'l4 ()))
+ 
+ (let label map)
+ (let args (cons (cons 'l17 ())
+                 (cons (cons n (quote (1 2 3 4 5)))
+                       (cons (cons 'l18 ())
+                             ()))))
+ (goto dispatch-0))
+)
